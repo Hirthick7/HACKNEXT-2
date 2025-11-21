@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Sign In / Sign Up{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 id="formTitle">Sign In</h2>
+
+        <!-- LOGIN FORM -->
+        <form id="signinForm" method="POST" action="/signin_post">
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <button class="auth-btn" type="submit">Sign In</button>
+        </form>
+
+        <!-- SIGNUP FORM -->
+        <form id="signupForm" method="POST" action="/signup_post" style="display: none;">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="password" name="password" placeholder="Create Password" required>
+            <button class="auth-btn" type="submit">Sign Up</button>
+        </form>
+
+        <p class="toggle" onclick="toggleForms()">Don't have an account? Sign Up</p>
+    </div>
+</div>
+
+<script>
+function toggleForms() {
+    const signin = document.getElementById("signinForm");
+    const signup = document.getElementById("signupForm");
+    const title = document.getElementById("formTitle");
+    const text = document.querySelector(".toggle");
+
+    if (signin.style.display === "none") {
+        signin.style.display = "block";
+        signup.style.display = "none";
+        title.textContent = "Sign In";
+        text.textContent = "Don't have an account? Sign Up";
+    } else {
+        signin.style.display = "none";
+        signup.style.display = "block";
+        title.textContent = "Sign Up";
+        text.textContent = "Already have an account? Sign In";
+    }
+}
+</script>
+
+{% endblock %}

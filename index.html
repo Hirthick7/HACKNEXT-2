@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero">
+    <div id="particles-js" class="ai-effect"></div> <!-- AI particle effect -->
+    <canvas id="three-canvas" class="three-bg"></canvas> <!-- 3D Globe -->
+    <div class="hero-content">
+        <h1>Welcome to Your Personalized Learning Journey!</h1>
+        <p>AI-Powered Copilot for Calculus & Thermodynamics. Assess, Adapt, Achieve.</p>
+    </div>
+</div>
+<div class="buttons-section">
+    <form action="/select_subject" method="post" class="inline-form">
+        <label for="subject-select">Choose Subject:</label>
+        <select id="subject-select" name="subject" required title="Select your learning subject">
+            <option value="">Choose Subject</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="ArtificialIntelligence">ArtificialIntelligence</option>
+            <option value="Python">Python</option>
+            <option value="English">English</option>
+            <option value="DataScience">DataScience</option>
+            <option value="Maths">Maths</option>
+        </select>
+        <button type="submit" class="btn-primary">Start Journey</button>
+    </form>
+    <a href="/quiz" class="btn-secondary">Take Quick Quiz</a>
+    <a href="/dashboard" class="btn-secondary">View Dashboard</a>
+</div>
+{% endblock %}

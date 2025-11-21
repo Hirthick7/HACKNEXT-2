@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Assessment Quiz - {{ subject }}{% endblock %}
+{% block content %}
+<div class="quiz-container">
+    <h2>Quick Assessment for {{ subject }}</h2>
+    <p>Answer 10 questions to gauge your knowledge (Q1-5) and learning style (Q6-10). Select the best answer.</p>
+    <form id="quiz-form">
+        <!-- Prior Knowledge Questions (1-5): value="1" for correct -->
+        <div class="question">
+            <label for="q1">1. What is the derivative of x²?</label><br>
+            <select id="q1" name="q1" title="Derivative of x squared">
+                <option value="0">x</option>
+                <option value="1" selected>2x</option> <!-- Correct: 1 -->
+            </select>
+        </div>
+        <div class="question">
+            <label for="q2">2. What is lim (x→0) sin(x)/x?</label><br>
+            <select id="q2" name="q2" title="Limit of sin(x)/x as x approaches 0">
+                <option value="0">0</option>
+                <option value="1" selected>1</option> <!-- Correct: 1 -->
+            </select>
+        </div>
+        <div class="question">
+            <label for="q3">3. Integral of 1/x dx?</label><br>
+            <select id="q3" name="q3" title="Indefinite integral of 1/x">
+                <option value="0">x²/2</option>
+                <option value="1" selected>ln|x| + C</option>
+            </select>
+        </div>
+        <div class="question">
+            <label for="q4">4. What is the area under y=1 from 0 to 1?</label><br>
+            <select id="q4" name="q4" title="Definite integral of y=1 from 0 to 1">
+                <option value="1">π</option>
+                <option value="0" selected>1</option>
+            </select>
+        </div>
+        <div class="question">
+            <label for="q5">5. Taylor series for e^x at 0 starts with?</label><br>
+            <select id="q5" name="q5" title="Taylor series expansion of e^x around 0">
+                <option value="0">1 + x + x²</option>
+                <option value="1" selected>1 + x + x²/2! + ...</option>
+            </select>
+        </div>
+        <!-- Learning Style Questions (6-10): VARK, value="1" prefers first option -->
+        <div class="question">
+            <label for="q6">6. I prefer learning by:</label><br>
+            <select id="q6" name="q6" title="Preferred learning method: visual or auditory">
+                <option value="0">Listening to explanations</option> <!-- A -->
+                <option value="1" selected>Watching diagrams/videos</option> <!-- V -->
+            </select>
+        </div>
+        <div class="question">
+            <label for="q7">7. To remember info, I:</label><br>
+            <select id="q7" name="q7" title="Memory retention: reading or discussing">
+                <option value="1" selected>Read and take notes</option> <!-- R -->
+                <option value="0">Discuss with others</option> <!-- A -->
+            </select>
+        </div>
+        <div class="question">
+            <label for="q8">8. For new skills, I like:</label><br>
+            <select id="q8" name="q8" title="Skill acquisition: hands-on or reading">
+                <option value="1" selected>Hands-on practice</option> <!-- K -->
+                <option value="0">Reading instructions</option> <!-- R -->
+            </select>
+        </div>
+        <div class="question">
+            <label for="q9">9. In groups, I contribute by:</label><br>
+            <select id="q9" name="q9" title="Group contribution: watching or doing">
+                <option value="0">Watching demos</option> <!-- V -->
+                <option value="1" selected>Doing activities</option> <!-- K -->
+            </select>
+        </div>
+        <div class="question">
+            <label for="q10">10. Best way to study:</label><br>
+            <select id="q10" name="q10" title="Study method: visual or verbal">
+                <option value="1" selected>Visual aids/maps</option> <!-- V -->
+                <option value="0">Verbal repetition</option> <!-- A -->
+            </select>
+        </div>
+        <button type="submit" class="btn-primary">Submit & Generate Plan</button>
+    </form>
+    <div id="ai-loader" class="hidden">🤖 AI Generating Your 30-Day Plan... <div id="particles-loader"></div></div>
+</div>
+<script>
+// Extra: Particles on loader
+if (document.getElementById('ai-loader')) {
+    particlesJS('particles-loader', { particles: { number: { value: 20 }, color: { value: '#4ecdc4' } } });
+}
+</script>
+{% endblock %}

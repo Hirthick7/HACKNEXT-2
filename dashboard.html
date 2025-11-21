@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Your 30-Day Plan - {{ subject }}{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Your Adaptive 30-Day Curriculum</h2>
+    <p>Score: {{ assessment.score }}/100 | Style: {{ assessment.style }}</p>
+
+    <div class="plan-grid">
+        {% for day in curriculum.days %}
+        <div class="day-card {% if day.completed %}completed{% endif %}">
+            
+            <h3>
+                Day {{ day.day }}
+                {% if day.completed %}
+                    <span class="checkmark">✓</span>
+                {% endif %}
+            </h3>
+
+            <ul>
+                {# ---------- FIXED LOOP: NO ZIP USED ---------- #}
+                {% for i in range(day.topics|length) %}
+                <li>
+                    <strong>{{ day.topics[i] }}</strong>:
+                    <a href="{{ day.links[i] }}" target="_blank">Link</a> |
+                    Problem: {{ day.problems[i] }} |
+                    {{ day.explanations[i] }}
+                </li>
+                {% endfor %}
+            </ul>
+
+            {% if not day.completed %}
+            <button onclick="markComplete('{{ day.day }}')">Mark Complete</button>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function markComplete(dayNum) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/update_progress', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error updating progress');
+                }
+            }
+        };
+
+        xhr.send(JSON.stringify({ "day": dayNum }));
+    }
+</script>
+{% endblock %}
