@@ -56,4 +56,37 @@ Each study day contains:
 
 ---
 
+
 # 📂 Folder Structure
+
+learning_copilot/
+│
+├── app.py
+├── requirements.txt
+│
+├── templates/
+│ ├── base.html
+│ ├── index.html
+│ ├── assessment.html
+│ ├── dashboard.html
+│
+└── static/
+├── css/
+│ └── styles.css
+└── js/
+└── script.js
+
+---
+
+## ▶ How to Run the Project
+
+### 1️⃣ Install Dependencies
+```bash
+pip install -r requirements.txt
+
+requirements:
+Flask==3.0.0
+Jinja2==3.1.2
+itsdangerous==2.1.2
+Werkzeug==3.0.0
+click==8.1.7
