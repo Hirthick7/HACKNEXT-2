@@ -14,7 +14,7 @@ app.secret_key = os.environ.get('FLASK_SECRET', 'super_secret_key_for_learning_c
 # -----------------------------------------------
 MONGODB_URI = os.environ.get(
     'MONGODB_URI',
-    "mongodb+srv://hirthick07:bapcx5j97s@cluster0.jqdiyw1.mongodb.net/"
+    "mongodb+srv://********************************/"
 )
 
 USE_IN_MEMORY = False
@@ -346,4 +346,5 @@ def not_found(e):
 
 if __name__ == '_main_':
     # disable reloader to avoid debugpy SystemExit in some debuggers
+
     app.run(debug=True, use_reloader=False)
